@@ -61,7 +61,7 @@ final class WhatsApp
             }
         }
         if (empty($cfg['admin_number'])) {
-            $cfg['admin_number'] = '923362465676';
+            $cfg['admin_number'] = '';
         }
         if (empty($cfg['graph_version'])) {
             $cfg['graph_version'] = 'v21.0';
@@ -113,7 +113,7 @@ final class WhatsApp
         $candidates = [
             (string) ($admin['phone'] ?? ''),
             (string) ($cfg['admin_number'] ?? ''),
-            '923362465676',
+            '',
         ];
         foreach ($candidates as $raw) {
             $n = self::normalizePhone($raw);
@@ -121,7 +121,7 @@ final class WhatsApp
                 return $n;
             }
         }
-        return '923362465676';
+        return '';
     }
 
     public static function sendOtp(string $phone, string $code): bool

@@ -53,8 +53,8 @@ final class Database
     }
 
     /**
-     * Live GoDaddy account uses unprefixed names (confirmed working):
-     * kitchenqueen_db / shaheerkhan
+     * Database credentials are read from private configuration.
+     * No account identifiers are stored here.
      */
     private static function credentialSets(): array { return [$GLOBALS['KQ_CONFIG']['db']]; }
 

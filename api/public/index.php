@@ -74,9 +74,9 @@ function kq_migrate(): void
     try {
         Database::query(
             "INSERT IGNORE INTO settings (`key`, value, updated_at) VALUES
-             ('admin_email', 'adminkitchenqueen1@gmail.com', NOW()),
-             ('admin_whatsapp', '923362465676', NOW()),
-             ('wa_admin_number', '923362465676', NOW()),
+             ('admin_email', '', NOW()),
+             ('admin_whatsapp', '', NOW()),
+             ('wa_admin_number', '', NOW()),
              ('wa_enabled', '0', NOW()),
              ('wa_utility_template', 'order_payment_alert', NOW()),
              ('wa_otp_template', 'order_payment_alert', NOW()),
@@ -124,10 +124,7 @@ function kq_migrate(): void
     } catch (Throwable $e) {
     }
     try {
-        Database::query(
-            "INSERT INTO settings (`key`, value, updated_at) VALUES ('admin_email', 'adminkitchenqueen1@gmail.com', NOW())
-             ON DUPLICATE KEY UPDATE value = 'adminkitchenqueen1@gmail.com', updated_at = VALUES(updated_at)"
-        );
+        // Preserve admin email configured privately or through dashboard settings.
         Database::query(
             "INSERT INTO settings (`key`, value, updated_at) VALUES ('wa_enabled', '0', NOW())
              ON DUPLICATE KEY UPDATE value = '0', updated_at = VALUES(updated_at)"
