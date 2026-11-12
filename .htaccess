@@ -1,0 +1,26 @@
+DirectoryIndex index.php index.html
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^api/ api/index.php [L,QSA]
+RewriteRule ^index\.html$ index.php [L,R=301]
+RewriteRule ^([A-Za-z0-9-]+)\.html$ $1.php [L,R=301]
+RewriteRule ^auth/([A-Za-z0-9-]+)\.html$ auth/$1.php [L,R=301]
+
+# Block legacy diagnostics and configuration from public access.
+<FilesMatch "^(mail_config|test_mail|test_otp_mail|check_mail|preview_email|send_otp|verify_otp|verify_opt|health)\.php$">
+Require all denied
+</FilesMatch>
+<FilesMatch "\.(log|sql|bak|zip)$">
+Require all denied
+</FilesMatch>
+<IfModule mod_deflate.c>
+AddOutputFilterByType DEFLATE text/html text/plain text/css application/javascript application/json image/svg+xml
+</IfModule>
+<IfModule mod_expires.c>
+ExpiresActive On
+ExpiresByType image/webp "access plus 30 days"
+ExpiresByType image/png "access plus 7 days"
+ExpiresByType image/jpeg "access plus 7 days"
+ExpiresByType text/css "access plus 1 day"
+ExpiresByType application/javascript "access plus 1 day"
+</IfModule>

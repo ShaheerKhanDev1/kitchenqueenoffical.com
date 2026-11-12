@@ -1,0 +1,17 @@
+# Private settings and production data
+*.local.php
+.env
+.env.*
+!.env.example
+*.log
+*.zip
+*.sql
+!database/schema.sql
+api/storage/*
+!api/storage/.htaccess
+!api/storage/uploads/
+api/storage/uploads/*
+!api/storage/uploads/.gitkeep
+.well-known/
+.DS_Store
+Thumbs.db
